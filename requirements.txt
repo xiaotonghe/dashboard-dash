@@ -90,3 +90,5 @@ webencodings==0.5.1
 Werkzeug==1.0.1
 whichcraft==0.5.2
 widgetsnbextension==3.4.2
+dash==1.0.0
+gunicorn==19.9.0
