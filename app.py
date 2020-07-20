@@ -16,6 +16,8 @@ import dash_html_components as html
 import dash_table as table
 from dash.dependencies import Input, Output
 
+from panels import homepage, opensales, inventory
+
 
 # ------------------------------------------------------------------------------
 # Import and clean data
@@ -31,9 +33,6 @@ df_new=df_new.reset_index()
 df_new['year']=df_new['CREATEDDATE'].dt.year
 df_new['month']=df_new['CREATEDDATE'].dt.month
 df_new['day'] = df_new['CREATEDDATE'].dt.day
-# extracting data for total sales orders number
-
-# extracting data for planned production orders number
 
 # return html Table with dataframe values
 def df_to_table(df):
@@ -44,15 +43,7 @@ def df_to_table(df):
             for i in range(len(df))
         ]
     )
-# returns top indicator div
-def indicator(color, text, id_value,child):
-    return html.Div(
-        [
-            html.P(text, className="twelve columns indicator_text"),
-            html.P(id=id_value, className="indicator_value",children=child),
-        ],
-        className="four columns indicator pretty_container",
-    )
+
 # ------------------------------------------------------------------------------
 # App layout
 app = dash.Dash(__name__, external_stylesheets=[
@@ -62,63 +53,29 @@ app = dash.Dash(__name__, external_stylesheets=[
 server = app.server
 
 app.layout = html.Div([
+
     html.H1("Dashboard Demo", style={'text-align': 'center'}, className="header"),
-
-    html.Div(
-                className="row indicators",
-                style={"width":"100%"},
-                children=[
-                    indicator("#00cc96", "Open Sales Orders", "left_leads_indicator",len(df_OpenSalesOrders)),
-                    indicator("#119DFF", "Planned Production Orders", "middle_leads_indicator",len(df_PlannedOrders)),
-                ],
-            ),
     
-    html.Div([
-        dcc.Dropdown(id="slct_year",
-                 options=[
-                     {"label": "2019", "value": 2019},
-                     {"label": "2020", "value": 2020}],
-                 multi=False,
-                 value=2019,
-                 style={'width': "40%"}
-                 ),
-        dcc.Graph(id='sales_line', figure={}, className='eight columns')
-    ], className="row pretty_container"),
-    
-
-    html.Div([
-        html.P("Open Sales Details", className="twelve columns indicator_text"),
-        html.Div(id="leads_table", className="table",
-                children=[df_to_table(df_OpenSalesOrders)],
-                style={'width': "100%"}),
-    ], className="row six columns pretty_container"),
-
-    html.Div([
-        html.P("Inventory Details", className="twelve columns indicator_text"),
-        html.Div(id="leads_table1", className="table",
-                children=[df_to_table(df_Inventory)],
-                style={'width': "100%"}),
-    ],className="row six columns pretty_container")
+    dcc.Tabs(id='tabs-layout', value='homepage', children=[
+        dcc.Tab(label='Home page', value='homepage', children=homepage.layout),
+        dcc.Tab(label='Sales Orders', value='salesorders', children=opensales.layout),
+        dcc.Tab(label='Inventory', value='inventory', children=inventory.layout),
+        dcc.Tab(label='Planned Production Orders', value='plannedorders'),
+        dcc.Tab(label='Sale History', value='salehistory')
+    ]),
     
 ])
 
 # ------------------------------------------------------------------------------
+# Tabs switching
+# @app.callback(Output('tabs-content', 'children'),
+#             [Input('tabs-layout', 'values')])
 
-# Droptown --> linegraph and table
-@app.callback(
-    Output(component_id='sales_line', component_property='figure'),
-    [Input(component_id='slct_year', component_property='value')]
-)
-def update_graph(year):
-    # filter data
-    df=df_new.copy()
-    df=df[df['year'] == year]
-    fig_linegraph = px.line(df, x='CREATEDDATE', y='QTYORDERED', title='Sales History')
-    
-    # sales open table
-    fig_table = px.line(df, x='CREATEDDATE', y='QTYORDERED', title='Sales History')
-    
-    return fig_linegraph
+# def render_content(tab):
+#     if tab == 'homepage':
+#         return homepage.layout
+
+
 
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
