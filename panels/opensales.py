@@ -33,7 +33,7 @@ layout = [
     html.Div([
          html.Div([
         html.P("Open Sales Details", className="twelve columns indicator_text"),
-        html.Div(id="leads_table", className="table",
+        html.Div(className="table",
                 children=[df_to_table(df_OpenSalesOrders)],
                 style={'width': "100%"}),
     ], className="row ten columns pretty_container")

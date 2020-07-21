@@ -27,14 +27,14 @@ def df_to_table(df):
             for i in range(len(df))
         ]
     )
-df_PlannedOrders=pd.read_excel("SampleData.xlsx",sheet_name='PlannedProductionOrders')
+df_SalesHistory = pd.read_excel("SampleData.xlsx", sheet_name='SalesHistory')
 
 layout = [
     html.Div([
          html.Div([
-        html.P("Planned Product Orders Details", className="twelve columns indicator_text"),
+        html.P("Sales History Details", className="twelve columns indicator_text"),
         html.Div(className="table",
-                children=[df_to_table(df_PlannedOrders)],
+                children=[df_to_table(df_SalesHistory)],
                 style={'width': "100%"}),
     ], className="row ten columns pretty_container")
     ])

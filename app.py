@@ -16,7 +16,7 @@ import dash_html_components as html
 import dash_table as table
 from dash.dependencies import Input, Output
 
-from panels import homepage, opensales, inventory
+from panels import homepage, opensales, inventory, plannedorders, saleshistory
 
 
 # ------------------------------------------------------------------------------
@@ -60,10 +60,9 @@ app.layout = html.Div([
         dcc.Tab(label='Home page', value='homepage', children=homepage.layout),
         dcc.Tab(label='Sales Orders', value='salesorders', children=opensales.layout),
         dcc.Tab(label='Inventory', value='inventory', children=inventory.layout),
-        dcc.Tab(label='Planned Production Orders', value='plannedorders'),
-        dcc.Tab(label='Sale History', value='salehistory')
+        dcc.Tab(label='Planned Production Orders', value='plannedorders',children=plannedorders.layout),
+        dcc.Tab(label='Sale History', value='salehistory',children=saleshistory.layout)
     ]),
-    
 ])
 
 # ------------------------------------------------------------------------------
