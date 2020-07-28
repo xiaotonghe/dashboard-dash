@@ -18,7 +18,6 @@ from dash.dependencies import Input, Output
 
 from panels import homepage, opensales, inventory, plannedorders, saleshistory
 
-
 # ------------------------------------------------------------------------------
 # Import and clean data
 # (importing)
@@ -27,12 +26,16 @@ df_Inventory=pd.read_excel("SampleData.xlsx",sheet_name='Inventory')
 df_PlannedOrders=pd.read_excel("SampleData.xlsx",sheet_name='PlannedProductionOrders')
 df_SalesHistory = pd.read_excel("SampleData.xlsx", sheet_name='SalesHistory')
 # extracting data for sales history
-df=df_SalesHistory.copy()
-df_new=df.groupby('CREATEDDATE')['QTYORDERED'].sum()
-df_new=df_new.reset_index()
-df_new['year']=df_new['CREATEDDATE'].dt.year
-df_new['month']=df_new['CREATEDDATE'].dt.month
-df_new['day'] = df_new['CREATEDDATE'].dt.day
+df_line=df_SalesHistory.copy()
+df_line['month']=df_line['CREATEDDATE'].dt.month
+df_line['year']=df_line['CREATEDDATE'].dt.year
+df_line = df_line.groupby(['year','month'])['QTYORDERED'].sum()
+df_line = df_line.reset_index()
+
+# extracting data for inventory
+df_inven = df_Inventory.copy()
+df_inven = df_inven.groupby('ITEMID')['QTY'].sum()
+df_inven = df_inven.reset_index()
 
 # return html Table with dataframe values
 def df_to_table(df):
@@ -41,8 +44,58 @@ def df_to_table(df):
         + [
             html.Tr([html.Td(df.iloc[i][col]) for col in df.columns])
             for i in range(len(df))
-        ]
+        ], className='table table-striped table-bordered table-hover',
+        
     )
+
+# Sales history line graph using plotly express
+fig_linegraph = px.line(df_line, x='month', y='QTYORDERED', color='year')
+fig_linegraph.update_layout(
+    
+    xaxis=dict(
+        visible=True,
+        gridcolor='#bdc3c7',
+        gridwidth=1,
+        tickmode = 'array',
+        tickvals=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        showgrid=True,
+        showline=True,
+        # zerolinecolor="#444",
+        # zerolinewidth = 1, 
+        # size="bottom",
+        tickfont=dict(family='Arial',
+                        size=12,
+                        color='rgb(82,82,82)'),
+                    
+    ),
+    yaxis=dict(
+        gridcolor='#bdc3c7',
+        gridwidth=1,
+        
+    ),
+    margin=dict(
+        l=10,
+        r=10,
+        t=50, 
+    ),
+    plot_bgcolor='white',
+)
+
+# Sales history line graph using go
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=df_line[df_line['year'] == 2019]['month'],
+                    y=df_line[df_line['year'] == 2019]['QTYORDERED'],
+                    mode='lines+markers', line_color='rgb(128, 128, 128)',name='2019'))
+fig.add_trace(go.Scatter(x=df_line[df_line['year'] == 2020]['month'],
+                    y=df_line[df_line['year'] == 2020]['QTYORDERED'],
+                    mode='lines+markers', line_color='rgb(36, 194, 206)', name='2020'))
+fig.update_layout(xaxis=dict(tickvals=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                            zerolinecolor='rgb(170, 170, 170)',
+                            showgrid=False),
+                    yaxis=dict(gridcolor='rgb(170, 170, 170)',
+                                zerolinecolor='rgb(170, 170, 170)'),
+                    plot_bgcolor='white'        
+                    )
 
 # ------------------------------------------------------------------------------
 # App layout
@@ -53,28 +106,123 @@ app = dash.Dash(__name__, external_stylesheets=[
 server = app.server
 
 app.layout = html.Div([
+                html.Div([
+                    html.Div([
+                        html.Nav([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo",
+                                style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
+                                , style={"margin-bottom": "0px"}),
+                                ], style={"height": "50px", "margin-bottom": "20px"}),
+                    ],className='navbar navbar-default top-navbar', ),
+                    html.Div([
+                        
+                        html.Div([
+                            # html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo",
+                            # style={"height":"80px","width":"400px"},id='logo_btn',n_clicks=0)]
+                            # ,style={"margin-bottom":"0px"}),
+                            # html.Img(src='assets/Sokol-Logo-DBIConvention.png',className="col-md-3 logo"),
+                            html.H1([])
+                        ], className="row col-md-12 page-header"),
+                    
+                        html.Div([
+                            html.Div([
+                                html.Div([
+                                    html.Div([
+                                        html.Img(src='assets/opensale1.jpg',className="icon"),
+                                    ],className="panel-left pull-left"),
+                                    html.Div([
+                                        html.H3([len(df_OpenSalesOrders)]),
+                                        html.Button(['Open Sales'],id='open_btn',n_clicks=0),
+                                        # html.Strong(['Open Sales'])
+                                    ],className="panel-right")
+                                ],className="panel panel-primary text-center no-boder"),
+                            ], className="col-md-3 col-sm-12 col-xs-12"),
 
-    html.H1("Dashboard Demo", style={'text-align': 'center'}, className="header"),
-    
-    dcc.Tabs(id='tabs-layout', value='homepage', children=[
-        dcc.Tab(label='Home page', value='homepage', children=homepage.layout),
-        dcc.Tab(label='Sales Orders', value='salesorders', children=opensales.layout),
-        dcc.Tab(label='Inventory', value='inventory', children=inventory.layout),
-        dcc.Tab(label='Planned Production Orders', value='plannedorders',children=plannedorders.layout),
-        dcc.Tab(label='Sale History', value='salehistory',children=saleshistory.layout)
-    ]),
+                            html.Div([
+                                html.Div([
+                                    html.Div([
+                                        html.Img(src='assets/plan1.png',className="icon"),
+                                    ],className="panel-left pull-left"),
+                                    html.Div([
+                                        html.H3([len(df_PlannedOrders)]),
+                                        html.Button(['Planned Orders'],id='plan_btn',n_clicks=0),
+                                        # html.Strong(['Planned Order'])
+                                    ],className="panel-right")
+                                ],className="panel panel-primary text-center no-boder"),
+                            ], className="col-md-3 col-sm-12 col-xs-12"),
+
+                            html.Div([
+                                html.Div([
+                                    html.Div([
+                                        html.Img(src='assets/sales history.png',className="icon"),
+                                    ],className="panel-left pull-left"),
+                                    html.Div([
+                                        html.H3([len(df_SalesHistory)]),
+                                        html.Button(['History Sales'],id='history_btn',n_clicks=0),
+                                        # html.Strong(['History Sales'])
+                                    ],className="panel-right")
+                                ],className="panel panel-primary text-center no-boder"),
+                            ], className="col-md-3 col-sm-12 col-xs-12"),
+
+                            html.Div([
+                                html.Div([
+                                    html.Div([
+                                        html.Img(src='assets/inventory1.png',className="icon"),
+                                    ],className="panel-left pull-left"),
+                                    html.Div([
+                                        html.Div([df_to_table(df_inven),],className='sm_tb'),
+                                        html.Button(['Inventory List'],id="inventory_btn",n_clicks=0),
+                                        # html.Strong(['Inventory List'],style={"font-size":"16px"})
+                                    ],className="panel-right")
+                                ],className="panel panel-primary text-center no-boder"),
+                            ], className="col-md-3 col-sm-12 col-xs-12"),                           
+                            
+                        ], className="row"),
+                        
+                        html.Div([
+                            html.Div([
+                                html.Div(className='panel-heading',id='main-header'),
+                                html.Div([
+                                    
+                                    dcc.Graph(figure=fig)
+                                ],id='main-content',className='panel-body morris-hover morris-default-style'),
+                            ],className='panel panel-default morris-line-chart')
+                        ], className="row"),
+                    
+                    ], id="page-inner"),
+
+                ], id='wrapper')
 ])
 
 # ------------------------------------------------------------------------------
-# Tabs switching
-# @app.callback(Output('tabs-content', 'children'),
-#             [Input('tabs-layout', 'values')])
-
-# def render_content(tab):
-#     if tab == 'homepage':
-#         return homepage.layout
-
-
+# callback
+@app.callback([Output('main-content','children'),
+               Output('main-header','children')],
+              [Input('logo_btn','n_clicks'),
+               Input('open_btn','n_clicks'),
+               Input('plan_btn','n_clicks'),
+               Input('history_btn','n_clicks'),
+               Input('inventory_btn','n_clicks')])
+def displayClick(btn1, btn2, btn3,btn4,btn5):
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    if 'logo_btn' in changed_id:
+        text ='Sales History line chart'
+        msg = dcc.Graph(figure=fig)
+    elif 'open_btn' in changed_id:
+        text='Open Sales Order Detail'
+        msg = df_to_table(df_OpenSalesOrders)
+    elif 'plan_btn' in changed_id:
+        text='Planned Orders Detail'
+        msg = df_to_table(df_PlannedOrders)
+    elif 'history_btn' in changed_id:
+        text='Sales History Detail'
+        msg = df_to_table(df_SalesHistory)
+    elif 'inventory_btn' in changed_id:
+        text='Inventory Detail'
+        msg = df_to_table(df_Inventory)
+    else:
+        text ='Sales History line chart'
+        msg = dcc.Graph(figure=fig)
+    return html.Div(msg),[text]
 
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
