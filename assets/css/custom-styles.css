@@ -20,10 +20,16 @@ button{
   padding: 0px;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
-
 }
-button:hover {
-  text-shadow: 1px 1px 1px #9daef5;}
+.tile-btn{
+  /* height:250px;
+  width: 201px; */
+  background: transparent;
+}
+
+.tile{
+  padding: 10px;
+}
 
 .table{ height:450px; 
         width: fit-content;
@@ -32,22 +38,36 @@ button:hover {
         border: none;
         }
 
-.sm_tb{
-  padding-top:10px;
-  height:70px; 
-  width: fit-content;
+.sm-tb{
+
   overflow-y:scroll; 
   display:block; 
   font-size: small;
   text-align: center;
 }
+.tile-content{
+  padding-top:10px;
+  height:70px; 
+  width: 101.72px;
+}
+
+
 
 td:hover {background-color: #c6e6f8;}
 tr:nth-child(even) {background-color: #f2f2f2;}
 
+.tile-style{
+  cursor: pointer;
+  height: 70px;
+  max-width: 350px;
+  padding: 24px 32px;
+}
   
-.icon{
-  width:100%;
+.tile-icon{
+  width:96px;
+  height: 96px;
+  background:transparent;
+  border: none;
 }
 .logo{
   padding:0px;
@@ -189,7 +209,7 @@ width: 100px;
 height: 100px;
 background: white;
 border: 2px solid white;
-border-radius: 100%;
+border-radius: 10px;
 overflow: hidden;
 margin: 12px;}
 .panel-left .fa-5x {
@@ -199,12 +219,15 @@ padding: 29px 0;
 margin-bottom:30px;
 }
 .panel-right{  
+width: 138.27px;
 height: 124px;
 background: transparent;
 margin-bottom: 0;
 color: #2B2E33;
 background-color: #fff;
-float: left;text-align: left;padding-left: 20px;}
+float: left;text-align: left;padding-left: 20px;
+}
+
 .panel-right h3{  
 font-size: 50px;
 padding-bottom: 15px;
@@ -224,6 +247,7 @@ font-weight:bold;
 background: #FFFFFF;
 font-size: 16px;
 padding: 15px 15px 0;}
+
 .panel-heading {
   /* padding: 15px 15px 0px; */
   border-bottom: 1px solid transparent;
@@ -273,7 +297,6 @@ border-radius: 50px;
 }
 .panel-primary{
 display:inline-block;
-margin-bottom: 30px;
 width:100%;
 }
 .green {

@@ -108,7 +108,7 @@ server = app.server
 app.layout = html.Div([
                 html.Div([
                     html.Div([
-                        html.Nav([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo",
+                        html.Nav([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo logo-btn",
                                 style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
                                 , style={"margin-bottom": "0px"}),
                                 ], style={"height": "50px", "margin-bottom": "20px"}),
@@ -116,67 +116,67 @@ app.layout = html.Div([
                     html.Div([
                         
                         html.Div([
-                            # html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo",
-                            # style={"height":"80px","width":"400px"},id='logo_btn',n_clicks=0)]
-                            # ,style={"margin-bottom":"0px"}),
-                            # html.Img(src='assets/Sokol-Logo-DBIConvention.png',className="col-md-3 logo"),
                             html.H1([])
                         ], className="row col-md-12 page-header"),
                     
                         html.Div([
                             html.Div([
-                                html.Div([
+                                html.Button([
                                     html.Div([
-                                        html.Img(src='assets/opensale1.jpg',className="icon"),
-                                    ],className="panel-left pull-left"),
-                                    html.Div([
-                                        html.H3([len(df_OpenSalesOrders)]),
-                                        html.Button(['Open Sales'],id='open_btn',n_clicks=0),
-                                        # html.Strong(['Open Sales'])
-                                    ],className="panel-right")
-                                ],className="panel panel-primary text-center no-boder"),
-                            ], className="col-md-3 col-sm-12 col-xs-12"),
+                                        html.Div([
+                                            html.Img(src='assets/opensale1.jpg',className="tile-icon"),
+                                        ],className="panel-left pull-left"),
+                                        html.Div([
+                                            html.H3([len(df_OpenSalesOrders)],className="tile-content"),
+                                            html.Div(['Open Sales'],),
+                                        ],className="panel-right")
+                                    ],className="panel panel-primary text-center no-boder tile"),
+                                ],id='open_btn',n_clicks=0,className="tile-btn"),
+                            ], className="col-xs-6 col-md-3"),
 
                             html.Div([
-                                html.Div([
+                                html.Button([
                                     html.Div([
-                                        html.Img(src='assets/plan1.png',className="icon"),
-                                    ],className="panel-left pull-left"),
-                                    html.Div([
-                                        html.H3([len(df_PlannedOrders)]),
-                                        html.Button(['Planned Orders'],id='plan_btn',n_clicks=0),
-                                        # html.Strong(['Planned Order'])
-                                    ],className="panel-right")
-                                ],className="panel panel-primary text-center no-boder"),
-                            ], className="col-md-3 col-sm-12 col-xs-12"),
+                                        html.Div([
+                                            html.Img(src='assets/plan1.png',className="tile-icon"),
+                                        ], className="panel-left pull-left"),
+                                        html.Div([
+                                            html.H3([len(df_PlannedOrders)],className="tile-content"),
+                                            html.Div(['Planned Orders'],),
+                                        ],className="panel-right")
+                                    ],className="panel panel-primary text-center no-boder tile"),
+                                ],id='plan_btn',n_clicks=0,className="tile-btn"),
+                            ], className="col-xs-6 col-md-3"),
 
                             html.Div([
-                                html.Div([
+                                html.Button([
                                     html.Div([
-                                        html.Img(src='assets/sales history.png',className="icon"),
-                                    ],className="panel-left pull-left"),
-                                    html.Div([
-                                        html.H3([len(df_SalesHistory)]),
-                                        html.Button(['History Sales'],id='history_btn',n_clicks=0),
-                                        # html.Strong(['History Sales'])
-                                    ],className="panel-right")
-                                ],className="panel panel-primary text-center no-boder"),
-                            ], className="col-md-3 col-sm-12 col-xs-12"),
+                                        html.Div([
+                                            html.Img(src='assets/sales history.png',className="tile-icon"),
+                                        ],className="panel-left pull-left"),
+                                        html.Div([
+                                            html.H3([len(df_SalesHistory)],className="tile-content"),
+                                            html.Div(['History Sales'],),
+                                        ],className="panel-right")
+                                    ],className="panel panel-primary text-center no-boder tile"),
+                                ],id='history_btn',n_clicks=0,className="tile-btn"),
+                            ], className="col-xs-6 col-md-3"),
 
                             html.Div([
-                                html.Div([
+                                html.Button([
                                     html.Div([
-                                        html.Img(src='assets/inventory1.png',className="icon"),
-                                    ],className="panel-left pull-left"),
-                                    html.Div([
-                                        html.Div([df_to_table(df_inven),],className='sm_tb'),
-                                        html.Button(['Inventory List'],id="inventory_btn",n_clicks=0),
-                                        # html.Strong(['Inventory List'],style={"font-size":"16px"})
-                                    ],className="panel-right")
-                                ],className="panel panel-primary text-center no-boder"),
-                            ], className="col-md-3 col-sm-12 col-xs-12"),                           
+                                        html.Div([
+                                            html.Img(src='assets/inventory1.png',className="tile-icon"),
+                                        ],className="panel-left pull-left"),
+                                        html.Div([
+                                            html.Div([df_to_table(df_inven),],className='sm-tb tile-content'),
+                                            html.Div(['Inventory List'],),
+                                        ],className="panel-right")
+                                    ],className="panel panel-primary text-center no-boder tile"),
+                                ],id="inventory_btn",n_clicks=0,className="tile-btn"),
+                            ], className="col-xs-6 col-md-3"),                           
                             
-                        ], className="row"),
+                        ], className="row col-xs-12 col-md-12"),
                         
                         html.Div([
                             html.Div([
@@ -186,7 +186,7 @@ app.layout = html.Div([
                                     dcc.Graph(figure=fig)
                                 ],id='main-content',className='panel-body morris-hover morris-default-style'),
                             ],className='panel panel-default morris-line-chart')
-                        ], className="row"),
+                        ], className="row col-xs-12 col-md-12"),
                     
                     ], id="page-inner"),
 
