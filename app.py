@@ -49,7 +49,10 @@ def df_to_table(df):
     )
 
 # Sales history line graph using plotly express
-fig_linegraph = px.line(df_line, x='month', y='QTYORDERED', color='year')
+fig_linegraph = px.line(df_line, x='month', y='QTYORDERED', color='year',
+                        hover_data={'year': True, 'month': True, 'QTYORDERED': True},
+                        )
+fig_linegraph.update_traces(hovertemplate="Year: %{year}: <br>Month: %{month} </br> Qty: %{QTYORDERED}")
 fig_linegraph.update_layout(
     
     xaxis=dict(
@@ -79,6 +82,11 @@ fig_linegraph.update_layout(
         t=50, 
     ),
     plot_bgcolor='white',
+
+    hoverlabel=dict(
+        bgcolor="white", 
+        font_size=16, 
+        font_family="Rockwell")
 )
 
 # Sales history line graph using go
@@ -96,6 +104,7 @@ fig.update_layout(xaxis=dict(tickvals=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                                 zerolinecolor='rgb(170, 170, 170)'),
                     plot_bgcolor='white'        
                     )
+
 
 # ------------------------------------------------------------------------------
 # App layout
@@ -177,7 +186,7 @@ app.layout = html.Div([
                                 ],id="inventory_btn",n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
                             ]),                           
                             
-                        ], className="row col-xs-12 col-md-12"),
+                        ], className="row col-xs-12 col-md-12 upper-main"),
                         
                         html.Div([
                             html.Div([

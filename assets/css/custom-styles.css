@@ -13,11 +13,15 @@ body {
   background: #e7e7e7 url(../img/bg-img.jpg) !important;
  
 }
-.lower-main{
-  padding-left: 15px;
-  padding-right:45px;
+.upper-main{
   margin: 0px;
 }
+.lower-main{
+  padding-left: 30px;
+  padding-right:30px;
+  margin: 0px;
+}
+
 
 button{
   border: none;
