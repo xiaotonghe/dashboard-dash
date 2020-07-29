@@ -188,7 +188,7 @@ app.layout = html.Div([
                             ],className='panel panel-default morris-line-chart')
                         ], className="row col-xs-12 col-md-12"),
                     
-                    ], id="page-inner"),
+                    ], id="page-inner")
 
                 ], id='wrapper')
 ])

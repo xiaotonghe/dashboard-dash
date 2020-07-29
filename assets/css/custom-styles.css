@@ -22,13 +22,12 @@ button{
   font-family: 'Open Sans', sans-serif;
 }
 .tile-btn{
-  /* height:250px;
-  width: 201px; */
+  height:146px;
   background: transparent;
 }
 
 .tile{
-  padding: 10px;
+  padding: 0px;
 }
 
 .table{ height:450px; 
@@ -66,7 +65,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .tile-icon{
   width:96px;
   height: 96px;
-  background:transparent;
+  background:white;
   border: none;
 }
 .logo{
@@ -223,6 +222,7 @@ width: 138.27px;
 height: 124px;
 background: transparent;
 margin-bottom: 0;
+margin-right: 10px;
 color: #2B2E33;
 background-color: #fff;
 float: left;text-align: left;padding-left: 20px;
@@ -296,7 +296,8 @@ border-radius: 50px;
 
 }
 .panel-primary{
-display:inline-block;
+display:flex;
+justify-content: center;
 width:100%;
 }
 .green {
