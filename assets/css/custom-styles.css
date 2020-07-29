@@ -11,9 +11,14 @@ http://creativecommons.org/licenses/by/3.0/
 body {
   font-family: 'Open Sans', sans-serif;
   background: #e7e7e7 url(../img/bg-img.jpg) !important;
-
-  
+ 
 }
+.lower-main{
+  padding-left: 15px;
+  padding-right:45px;
+  margin: 0px;
+}
+
 button{
   border: none;
   background: none;
@@ -21,6 +26,11 @@ button{
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
 }
+.tile-btn :hover{
+  border-color: rgb(55,81,255);
+  
+}
+
 .tile-btn{
   height:fit-content;
   background: transparent;
@@ -63,7 +73,6 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   width:96px;
   height: 96px;
   background:white;
-  border: none;
 }
 .logo{
   padding:0px;
@@ -203,8 +212,8 @@ text-align: left;}
 .panel-left{  
 width: 100px;
 height: 100px;
-background: white;
-border: 2px solid white;
+/* background: white;
+border: 2px solid white; */
 border-radius: 10px;
 overflow: hidden;
 margin: 12px;}
@@ -573,7 +582,7 @@ background: #096E75;
 }
 .top-navbar {
   /* background: #4a4a4a; */
-  background: #0eb3e6;
+  background: #9ed6f1;
 	border-bottom:none;
 }
 .top-navbar .nav > li > a > i {

@@ -124,7 +124,7 @@ app.layout = html.Div([
                                 html.Button([
                                     html.Div([
                                         html.Div([
-                                            html.Img(src='assets/opensale1.jpg',className="tile-icon"),
+                                            html.Img(src='assets/money1.png',className="tile-icon"),
                                         ],className="panel-left pull-left"),
                                         html.Div([
                                             html.H3([len(df_OpenSalesOrders)],className="tile-content"),
@@ -139,7 +139,7 @@ app.layout = html.Div([
                                 html.Button([
                                     html.Div([
                                         html.Div([
-                                            html.Img(src='assets/plan1.png',className="tile-icon"),
+                                            html.Img(src='assets/pen.png',className="tile-icon"),
                                         ], className="panel-left pull-left"),
                                         html.Div([
                                             html.H3([len(df_PlannedOrders)],className="tile-content"),
@@ -187,7 +187,7 @@ app.layout = html.Div([
                                     dcc.Graph(figure=fig)
                                 ],id='main-content',className='panel-body morris-hover morris-default-style'),
                             ],className='panel panel-default morris-line-chart')
-                        ], className="row col-xs-12 col-md-12"),
+                        ], className="row col-xs-12 col-md-12 lower-main"),
                     
                     ], id="page-inner")
 
