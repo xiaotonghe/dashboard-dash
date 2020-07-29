@@ -22,7 +22,7 @@ button{
   font-family: 'Open Sans', sans-serif;
 }
 .tile-btn{
-  height:146px;
+  height:fit-content;
   background: transparent;
 }
 
@@ -41,15 +41,12 @@ button{
 
   overflow-y:scroll; 
   display:block; 
-  font-size: small;
+  font-size: x-small;
   text-align: center;
 }
 .tile-content{
   padding-top:10px;
-  height:70px; 
-  width: 101.72px;
 }
-
 
 
 td:hover {background-color: #c6e6f8;}
@@ -297,8 +294,8 @@ border-radius: 50px;
 }
 .panel-primary{
 display:flex;
-justify-content: center;
-width:100%;
+justify-content: left;
+
 }
 .green {
 /* background-color: #1CC09F; */

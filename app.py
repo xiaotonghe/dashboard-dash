@@ -131,8 +131,9 @@ app.layout = html.Div([
                                             html.Div(['Open Sales'],),
                                         ],className="panel-right")
                                     ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='open_btn',n_clicks=0,className="tile-btn"),
-                            ], className="col-xs-6 col-md-3"),
+                                ],id='open_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 "),
+                            # ], className="col-xs-6 col-md-3"),
+                            ]),
 
                             html.Div([
                                 html.Button([
@@ -145,8 +146,8 @@ app.layout = html.Div([
                                             html.Div(['Planned Orders'],),
                                         ],className="panel-right")
                                     ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='plan_btn',n_clicks=0,className="tile-btn"),
-                            ], className="col-xs-6 col-md-3"),
+                                ],id='plan_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                            ]),
 
                             html.Div([
                                 html.Button([
@@ -159,8 +160,8 @@ app.layout = html.Div([
                                             html.Div(['History Sales'],),
                                         ],className="panel-right")
                                     ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='history_btn',n_clicks=0,className="tile-btn"),
-                            ], className="col-xs-6 col-md-3"),
+                                ],id='history_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                            ]),
 
                             html.Div([
                                 html.Button([
@@ -169,12 +170,12 @@ app.layout = html.Div([
                                             html.Img(src='assets/inventory1.png',className="tile-icon"),
                                         ],className="panel-left pull-left"),
                                         html.Div([
-                                            html.Div([df_to_table(df_inven),],className='sm-tb tile-content'),
+                                            html.Div([df_to_table(df_inven),],className='sm-tb',style={'height':'65%','font-weight':'normal'}),
                                             html.Div(['Inventory List'],),
                                         ],className="panel-right")
                                     ],className="panel panel-primary text-center no-boder tile"),
-                                ],id="inventory_btn",n_clicks=0,className="tile-btn"),
-                            ], className="col-xs-6 col-md-3"),                           
+                                ],id="inventory_btn",n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                            ]),                           
                             
                         ], className="row col-xs-12 col-md-12"),
                         
