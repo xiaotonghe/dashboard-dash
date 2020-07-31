@@ -167,7 +167,7 @@ app.layout = html.Div([
                                         ],className="panel-left pull-left"),
                                         html.Div([
                                             html.H3([len(df_SalesHistory)],className="tile-content"),
-                                            html.Div(['History Sales'],),
+                                            html.Div(['Sales History'],),
                                         ],className="panel-right")
                                     ],className="panel text-center no-boder tile"),
                                 ],id='history_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3"),
