@@ -22,6 +22,50 @@ body {
   margin: 0px;
 }
 
+.sm-tb{
+  overflow-y:scroll; 
+  display:block; 
+  font-size: x-small;
+  font-weight: normal;
+  text-align: center;
+  height: 65%;
+  width: 220px;
+  border-bottom: none
+}
+
+/* generic styling, for destop and laptop */
+
+.table{ height:450px; 
+  width: 1500px;
+  overflow-y:scroll; 
+  display:block;
+  border: transparent;
+  }
+
+/* td:not(.CalendarDay) {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+} */
+
+td, th{
+  padding: 6px;
+  text-align: left;
+}
+
+.special th{
+  padding: 6px 50px;
+  text-align: left;
+}
+
+.special td{
+  padding: 6px 50px;
+  text-align: left;
+}
+
+td:hover {background-color: #c6e6f8;}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
 
 button{
   border: none;
@@ -32,7 +76,6 @@ button{
 }
 .tile-btn :hover{
   border-color: rgb(55,81,255);
-  
 }
 
 .tile-btn{
@@ -44,27 +87,9 @@ button{
   padding: 0px;
 }
 
-.table{ height:450px; 
-        width: fit-content;
-        overflow-y:scroll; 
-        display:block;
-        border: none;
-        }
-
-.sm-tb{
-
-  overflow-y:scroll; 
-  display:block; 
-  font-size: x-small;
-  text-align: center;
-}
 .tile-content{
   padding-top:10px;
 }
-
-
-td:hover {background-color: #c6e6f8;}
-tr:nth-child(even) {background-color: #f2f2f2;}
 
 .tile-style{
   cursor: pointer;
@@ -104,6 +129,8 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 .no-boder {
     border:1.2px solid #f3f3f3;
+    display:flex;
+    justify-content: left;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
@@ -305,11 +332,10 @@ font-size: 40px;
 border-radius: 50px;
 
 }
-.panel-primary{
+/* .panel-primary{
 display:flex;
 justify-content: left;
-
-}
+} */
 .green {
 /* background-color: #1CC09F; */
 color: #fff;

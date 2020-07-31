@@ -112,6 +112,8 @@ app = dash.Dash(__name__, external_stylesheets=[
         'https://codepen.io/chriddyp/pen/bWLwgP.css'
     ]
 )
+# app = dash.Dash(__name__)
+
 server = app.server
 
 app.layout = html.Div([
@@ -139,9 +141,8 @@ app.layout = html.Div([
                                             html.H3([len(df_OpenSalesOrders)],className="tile-content"),
                                             html.Div(['Open Sales'],),
                                         ],className="panel-right")
-                                    ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='open_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 "),
-                            # ], className="col-xs-6 col-md-3"),
+                                    ],className="panel text-center no-boder tile"),
+                                ],id='open_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3 "),
                             ]),
 
                             html.Div([
@@ -154,8 +155,8 @@ app.layout = html.Div([
                                             html.H3([len(df_PlannedOrders)],className="tile-content"),
                                             html.Div(['Planned Orders'],),
                                         ],className="panel-right")
-                                    ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='plan_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                                    ],className="panel text-center no-boder tile"),
+                                ],id='plan_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3"),
                             ]),
 
                             html.Div([
@@ -168,8 +169,8 @@ app.layout = html.Div([
                                             html.H3([len(df_SalesHistory)],className="tile-content"),
                                             html.Div(['History Sales'],),
                                         ],className="panel-right")
-                                    ],className="panel panel-primary text-center no-boder tile"),
-                                ],id='history_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                                    ],className="panel text-center no-boder tile"),
+                                ],id='history_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3"),
                             ]),
 
                             html.Div([
@@ -179,11 +180,11 @@ app.layout = html.Div([
                                             html.Img(src='assets/inventory1.png',className="tile-icon"),
                                         ],className="panel-left pull-left"),
                                         html.Div([
-                                            html.Div([df_to_table(df_inven),],className='sm-tb',style={'height':'65%','font-weight':'normal'}),
+                                            html.Div([df_to_table(df_inven),],className='sm-tb'),
                                             html.Div(['Inventory List'],),
                                         ],className="panel-right")
-                                    ],className="panel panel-primary text-center no-boder tile"),
-                                ],id="inventory_btn",n_clicks=0,className="tile-btn col-xs-6 col-md-3"),
+                                    ],className="panel text-center no-boder tile"),
+                                ],id="inventory_btn",n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3"),
                             ]),                           
                             
                         ], className="row col-xs-12 col-md-12 upper-main"),
@@ -192,11 +193,10 @@ app.layout = html.Div([
                             html.Div([
                                 html.Div(className='panel-heading',id='main-header'),
                                 html.Div([
-                                    
                                     dcc.Graph(figure=fig)
-                                ],id='main-content',className='panel-body morris-hover morris-default-style'),
+                                ],id='main-content',className='lg-tb panel-body morris-hover morris-default-style'),
                             ],className='panel panel-default morris-line-chart')
-                        ], className="row col-xs-12 col-md-12 lower-main"),
+                        ], className="row col-xs-12 col-md-12 col-lg-12 lower-main"),
                     
                     ], id="page-inner")
 
@@ -217,22 +217,28 @@ def displayClick(btn1, btn2, btn3,btn4,btn5):
     if 'logo_btn' in changed_id:
         text ='Sales History line chart'
         msg = dcc.Graph(figure=fig)
+        ele = html.Div(msg)
     elif 'open_btn' in changed_id:
         text='Open Sales Order Detail'
         msg = df_to_table(df_OpenSalesOrders)
+        ele = html.Div(msg)
     elif 'plan_btn' in changed_id:
         text='Planned Orders Detail'
         msg = df_to_table(df_PlannedOrders)
+        ele = html.Div(msg,className='special')
     elif 'history_btn' in changed_id:
         text='Sales History Detail'
         msg = df_to_table(df_SalesHistory)
+        ele = html.Div(msg)
     elif 'inventory_btn' in changed_id:
         text='Inventory Detail'
         msg = df_to_table(df_Inventory)
+        ele = html.Div(msg,className='special')
     else:
         text ='Sales History line chart'
         msg = dcc.Graph(figure=fig)
-    return html.Div(msg),[text]
+        ele = html.Div(msg)
+    return ele,[text]
 
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
