@@ -195,7 +195,7 @@ app.layout = html.Div([
                                 html.Div([
                                     dcc.Graph(figure=fig)
                                 ],id='main-content',className='lg-tb panel-body morris-hover morris-default-style'),
-                            ],className='panel panel-default morris-line-chart')
+                            ],className='panel panel-default morris-line-chart adjust-e11')
                         ], className="row col-xs-12 col-md-12 col-lg-12 lower-main"),
                     
                     ], id="page-inner")
