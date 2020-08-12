@@ -18,6 +18,10 @@ body {
   .adjust-e11{
     margin-top: 110px;
   }
+  #logo_btn :hover{
+    border-color: rgb(55,81,255);
+  }
+
 }
 
 .upper-main{
@@ -154,6 +158,7 @@ h4 {
     border: 0px solid transparent; 
    -webkit-border-radius: 0px;
 -moz-border-radius: 0px;
+  -ms-border-radius:0px;
 border-radius: 0px;
 
 }
@@ -392,6 +397,7 @@ font-size: 40px;
     font-size:20px;
     font-weight:500;
   -webkit-border-radius: 0px;
+  -ms-border-radius: 0px;
 -moz-border-radius: 0px;
 border-radius: 0px;
 background-color:#2EA7EB;
@@ -488,6 +494,7 @@ font-size: 14px;
 .user-image {
     margin: 25px auto;
 -webkit-border-radius: 10px;
+-ms-border-radius: 10px;
 -moz-border-radius: 10px;
 border-radius: 10px;
 max-height:170px;
@@ -684,6 +691,7 @@ width: 50px;
 height: 50px;
 padding: 6px 0;
  -webkit-border-radius: 25px;
+ -ms-border-radius: 25px;
 -moz-border-radius: 25px;
 border-radius: 25px;
 text-align: center;

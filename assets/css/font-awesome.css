@@ -18,6 +18,7 @@
   font-weight: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 /* makes the font 33% larger relative to the icon container */
@@ -79,6 +80,7 @@
 }
 .fa-spin {
   -webkit-animation: spin 2s infinite linear;
+  -ms-animation: spin 2s infinite linear;
   -moz-animation: spin 2s infinite linear;
   -o-animation: spin 2s infinite linear;
   animation: spin 2s infinite linear;
