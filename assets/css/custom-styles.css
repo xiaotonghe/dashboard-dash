@@ -21,6 +21,9 @@ body {
   #logo_btn :hover{
     border-color: rgb(55,81,255);
   }
+  .tile-btn{
+    height: 146.375;
+  }
 
 }
 
