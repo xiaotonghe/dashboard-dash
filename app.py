@@ -123,15 +123,17 @@ app.layout = html.Div([
                                 style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
                                 , style={"margin-bottom": "0px"}),
                                 ], style={"height": "50px", "margin-bottom": "20px"}),
-                    ],className='navbar navbar-default top-navbar', ),
+                    ], className='navbar navbar-default top-navbar',),
+                    
                     html.Div([
                         
                         html.Div([
                             html.H1([])
                         ], className="row col-md-12 page-header"),
-                    
+
                         html.Div([
                             html.Div([
+                                # tile open sales btn
                                 html.Button([
                                     html.Div([
                                         html.Div([
@@ -142,7 +144,22 @@ app.layout = html.Div([
                                             html.Div(['Open Sales'],),
                                         ],className="panel-right")
                                     ],className="panel text-center no-boder tile"),
-                                ],id='open_btn',n_clicks=0,className="tile-btn col-xs-6 col-md-3 col-lg-3 "),
+                                ], id='open_btn', n_clicks=0, className="tile-btn col-xs-6 col-md-3 col-lg-3 "),
+
+                                # # link
+                                # dcc.Location(id='url', refresh=False),
+                                # dcc.Link([
+                                #     html.Div([
+                                #         html.Div([
+                                #             html.Img(src='assets/money1.png',className="tile-icon"),
+                                #         ],className="panel-left pull-left"),
+                                #         html.Div([
+                                #             html.H3([len(df_OpenSalesOrders)],className="tile-content"),
+                                #             html.Div(['Open Sales'],),
+                                #         ],className="panel-right")
+                                #     ],className="panel text-center no-boder tile"),
+                                # ], id='open_btn',className="tile-btn col-xs-6 col-md-3 col-lg-3 ",href='/open_sales'),                                
+                                
                             ]),
 
                             html.Div([
@@ -211,7 +228,39 @@ app.layout = html.Div([
                Input('open_btn','n_clicks'),
                Input('plan_btn','n_clicks'),
                Input('history_btn','n_clicks'),
-               Input('inventory_btn','n_clicks')])
+               Input('inventory_btn', 'n_clicks')])
+# @app.callback([Output('main-content','children'),
+#                Output('main-header','children')],
+#               [Input('url', 'pathname')])
+
+# def displayClick(pathname):
+#     # changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+#     if pathname =='logo-btn':
+#         text ='Sales History line chart'
+#         msg = dcc.Graph(figure=fig)
+#         ele = html.Div(msg)
+#     elif pathname == '/open_sales':
+#         text='Open Sales Order Detail'
+#         msg = df_to_table(df_OpenSalesOrders)
+#         ele = html.Div(msg)
+#     elif pathname == 'plan_btn':
+#         text='Planned Orders Detail'
+#         msg = df_to_table(df_PlannedOrders)
+#         ele = html.Div(msg,className='special')
+#     elif pathname == 'history_btn':
+#         text='Sales History Detail'
+#         msg = df_to_table(df_SalesHistory)
+#         ele = html.Div(msg)
+#     elif pathname == 'inventory_btn':
+#         text='Inventory Detail'
+#         msg = df_to_table(df_Inventory)
+#         ele = html.Div(msg,className='special')
+#     else:
+#         text ='Sales History line chart'
+#         msg = dcc.Graph(figure=fig)
+#         ele = html.Div(msg)
+#     return ele,[text]    
+              
 def displayClick(btn1, btn2, btn3,btn4,btn5):
     changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
     if 'logo_btn' in changed_id:

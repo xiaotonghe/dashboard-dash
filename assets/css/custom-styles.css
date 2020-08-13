@@ -16,15 +16,11 @@ body {
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .adjust-e11{
-    margin-top: 110px;
-  }
-  #logo_btn :hover{
-    border-color: rgb(55,81,255);
+    margin-top: 0px;
   }
   .tile-btn{
-    height: 146.375;
+    height: 146.375px;
   }
-
 }
 
 .upper-main{
