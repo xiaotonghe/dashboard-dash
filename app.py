@@ -119,7 +119,7 @@ server = app.server
 app.layout = html.Div([
                 html.Div([
                     html.Div([
-                        html.Nav([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo logo-btn",
+                        html.Div([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo logo-btn",
                                 style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
                                 , style={"margin-bottom": "0px"}),
                                 ], style={"height": "50px", "margin-bottom": "20px"}),
