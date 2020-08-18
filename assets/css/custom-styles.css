@@ -22,6 +22,22 @@ body {
     height: 146.375px;
   }
 }
+/* ------------------------ */
+.nav_div{
+  background: #9ed6f1;
+  border-bottom:none;
+  height: 70px;
+  width: 100%;
+}
+
+.logo{
+  padding:0px;
+}
+
+.logo_img{
+  height:60px;
+  width:300px;
+}
 
 .upper-main{
   margin: 0px;
@@ -113,9 +129,6 @@ button{
   height: 96px;
   background:white;
 }
-.logo{
-  padding:0px;
-}
 
  #wrapper {
     width: 100%;
@@ -131,7 +144,7 @@ button{
     background-color:transparent;
     padding:30px;
     min-height:1200px;
-    padding-top: 60px;
+    padding-top: 10px;
 }
 
 .text-center {

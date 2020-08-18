@@ -118,12 +118,18 @@ server = app.server
 
 app.layout = html.Div([
                 html.Div([
+                    # html.Div([
+                    #     html.Div([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo logo-btn",
+                    #             style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
+                    #             , style={"margin-bottom": "0px"}),
+                    #             ], style={"height": "50px", "margin-bottom": "20px"}),
+                    # ], className='navbar navbar-default top-navbar',),
+
                     html.Div([
-                        html.Div([html.Button([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="col-md-3 logo logo-btn",
-                                style={"height":"60px","width":"300px"},id='logo_btn',n_clicks=0)]
-                                , style={"margin-bottom": "0px"}),
-                                ], style={"height": "50px", "margin-bottom": "20px"}),
-                    ], className='navbar navbar-default top-navbar',),
+                        html.Button([
+                                html.Div([html.Img(src='assets/Sokol-Logo-DBIConvention.png', className="logo_img")]),
+                            ],id='logo_btn', n_clicks=0,className="col-md-3 logo logo-btn logo_img"),
+                        ],className="nav_div"),
                     
                     html.Div([
                         
