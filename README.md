@@ -7,5 +7,5 @@ python app.py
 ```
 ### [Demo](https://youtu.be/iv2nhQ6A0KI)
 
-![Watch the video](https://j.gifs.com/71gN9B.gif)
+-![Watch the video](https://j.gifs.com/71gN9B.gif)
 +<img src="/art/sample.gif?raw=true" width="200px">
