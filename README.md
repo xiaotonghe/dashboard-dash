@@ -6,6 +6,4 @@ A responsive dashboard using Dash, Boostrap.
 python app.py
 ```
 ### [Demo](https://youtu.be/iv2nhQ6A0KI)
-
-![Watch the video](https://j.gifs.com/71gN9B.gif)
 <img src="/demo.gif">
